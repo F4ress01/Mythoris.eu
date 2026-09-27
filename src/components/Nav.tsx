@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useSite } from "../context/SiteProvider";
+import { goToSection } from "../utils/sectionLink";
 
 const SECTION_IDS = ["rozgrywka", "discord", "spolecznosc"];
 
@@ -37,6 +39,8 @@ export default function Nav() {
   const { t, locale, setLocale, copyIp, mobileOpen, toggleMobile, closeMobile } = useSite();
   const activeId = useActiveSection(SECTION_IDS);
   const navRef = useRef<HTMLElement | null>(null);
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!mobileOpen) return;
@@ -63,23 +67,35 @@ export default function Nav() {
   return (
     <header className="nav" ref={navRef}>
       <div className="wrap nav-row">
-        <a className="brand" href="#top">
+        <a className="brand" href="#top" onClick={(e) => goToSection(e, "top", pathname, navigate)}>
           <img src="/assets/mythoris-icon.png" alt="Mythoris" />
           <span>MYTHORIS</span>
         </a>
         <ul className="nav-links">
           <li>
-            <a href="#rozgrywka" className={linkClass("rozgrywka")}>
+            <a
+              href="#rozgrywka"
+              className={linkClass("rozgrywka")}
+              onClick={(e) => goToSection(e, "rozgrywka", pathname, navigate)}
+            >
               {t.nav.gameplay}
             </a>
           </li>
           <li>
-            <a href="#discord" className={linkClass("discord")}>
+            <a
+              href="#discord"
+              className={linkClass("discord")}
+              onClick={(e) => goToSection(e, "discord", pathname, navigate)}
+            >
               {t.nav.discord}
             </a>
           </li>
           <li>
-            <a href="#spolecznosc" className={linkClass("spolecznosc")}>
+            <a
+              href="#spolecznosc"
+              className={linkClass("spolecznosc")}
+              onClick={(e) => goToSection(e, "spolecznosc", pathname, navigate)}
+            >
               {t.nav.community}
             </a>
           </li>
@@ -118,17 +134,35 @@ export default function Nav() {
       <div className={`mobile-nav-wrap wrap${mobileOpen ? " open" : ""}`} id="mobileNav">
         <ul>
           <li>
-            <a href="#rozgrywka" onClick={closeMobile}>
+            <a
+              href="#rozgrywka"
+              onClick={(e) => {
+                goToSection(e, "rozgrywka", pathname, navigate);
+                closeMobile();
+              }}
+            >
               {t.nav.gameplay}
             </a>
           </li>
           <li>
-            <a href="#discord" onClick={closeMobile}>
+            <a
+              href="#discord"
+              onClick={(e) => {
+                goToSection(e, "discord", pathname, navigate);
+                closeMobile();
+              }}
+            >
               {t.nav.discord}
             </a>
           </li>
           <li>
-            <a href="#spolecznosc" onClick={closeMobile}>
+            <a
+              href="#spolecznosc"
+              onClick={(e) => {
+                goToSection(e, "spolecznosc", pathname, navigate);
+                closeMobile();
+              }}
+            >
               {t.nav.community}
             </a>
           </li>

@@ -1,9 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { MC_VERSION } from "../content";
 import { useSite } from "../context/SiteProvider";
+import { goToSection } from "../utils/sectionLink";
 
 export default function Footer() {
   const { t } = useSite();
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
 
   return (
     <footer>
@@ -18,10 +21,14 @@ export default function Footer() {
           </div>
           <ul className="footer-links">
             <li>
-              <a href="#rozgrywka">{t.nav.gameplay.toUpperCase()}</a>
+              <a href="#rozgrywka" onClick={(e) => goToSection(e, "rozgrywka", pathname, navigate)}>
+                {t.nav.gameplay.toUpperCase()}
+              </a>
             </li>
             <li>
-              <a href="#discord">{t.nav.discord.toUpperCase()}</a>
+              <a href="#discord" onClick={(e) => goToSection(e, "discord", pathname, navigate)}>
+                {t.nav.discord.toUpperCase()}
+              </a>
             </li>
             <li>
               <Link to="/rules">{t.footer.rules}</Link>
