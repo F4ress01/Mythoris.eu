@@ -326,6 +326,7 @@
     text-shadow:2px 2px 0 #000; margin:0 0 14px;
   }
   .rules-list{ margin:0; padding-left:22px; color:var(--parchment); }
+  .rules-lead{ color:var(--parchment); line-height:1.6; margin:0 0 12px; }
   .rules-list li{ margin-bottom:10px; line-height:1.6; }
   .rules-note{
     margin-top:48px; padding-top:24px; border-top:3px solid #000;
