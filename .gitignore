@@ -18,3 +18,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 *.tsbuildinfo
+
+# generowane przy buildzie (scripts/build-packs-api.mjs)
+/public/api

@@ -7,7 +7,10 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "postbuild": "node -e \"require('fs').copyFileSync('dist/index.html','dist/404.html')\"",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predev": "node scripts/build-packs-api.mjs",
+    "prebuild": "node scripts/build-packs-api.mjs",
+    "packs": "node scripts/build-packs-api.mjs"
   },
   "dependencies": {
     "react": "^18.3.1",

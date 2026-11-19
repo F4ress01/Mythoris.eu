@@ -33,6 +33,9 @@ export default function Footer() {
             <li>
               <Link to="/rules">{t.footer.rules}</Link>
             </li>
+            <li>
+              <Link to="/packs">{t.footer.packs}</Link>
+            </li>
           </ul>
         </div>
         <div className="copyright">{t.footer.copyright}</div>
