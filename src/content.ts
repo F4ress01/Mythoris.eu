@@ -44,7 +44,7 @@ export interface SiteContent {
     kicker: string;
     title: string;
     intro: string;
-    sections: { heading: string; items: string[] }[];
+    sections: { heading: string; lead?: string; items: string[] }[];
     note: string;
   };
   footer: {
@@ -114,48 +114,64 @@ export const content: Record<Locale, SiteContent> = {
     },
     rules: {
       kicker: "REGULAMIN",
-      title: "Regulamin serwera",
-      intro:
-        "Grając na Mythoris, akceptujesz poniższe zasady. Administracja może je aktualizować — zmiany obowiązują od momentu publikacji.",
+      title: "REGULAMIN Mythoris.eu",
+      intro: "Ostatnia zmiana: 27.10.2026r.",
       sections: [
         {
-          heading: "Zasady ogólne",
+          heading: "§1. Postanowaienia ogólne",
           items: [
-            "Szanuj innych graczy i członków administracji.",
-            "Zakazane jest oszukiwanie: używanie cheatów, X-ray, dupe'ów i innych nieuczciwych metod.",
-            "Zakazane jest posiadanie więcej niż jednego konta w celu omijania kar lub zdobywania nieuczciwej przewagi.",
+            "Dołączając na serwer, akceptujesz poniższy regulamin i zobowiązujesz się do jego przestrzegania.",
+            "Nieznajomość regulaminu lub nie wiedza o jego istnieniu nie zwalnia z odpowiedzialności za jego łamanie.",
+            "Administracja ma prawo do ukarania gracza w sytuacjach nieujętych w regulaminie, jeśli jego działanie działa na szkodę serwera lub społeczności.",
+            "Regulamin może zostać zmieniony bez przedwczesnego informowania.",
+            "Regulamin jest własnością servera i zakazuje się jego kopiowania.",
           ],
         },
         {
-          heading: "Czat i komunikacja",
+          heading: "§2. Discord",
           items: [
-            "Zakazane są mowa nienawiści, treści dyskryminujące oraz spam.",
-            "Reklamowanie innych serwerów lub usług bez zgody administracji jest zabronione.",
+            "Zakaz spamowania/floodowania.",
+            "Zakaz podszywania się pod administracje.",
+            "Zakaz upubliczniania danych osobowych innych użytkowników lub kogokolwiek.",
+            "Nie nadużywaj obrażania, wyzywania i poniżania innych (w jakikolwiek sposób), a także używania słów/emotek wulgarnie nacechowanych.",
+            "Nazwa oraz profilowe użytkownika musi być odpowiednia.",
+            "Zakaz poruszania tematów wulgarnych/rasistowskich/erotycznych/religijnych/politycznych itp.",
+            "Zakazane jest wysyłanie plików lub linków zawierających treści wulgarne/rasistowskie/pornograficzne/religijne itp.",
+            "Zakaz handlu prawdziwą walutą.",
+            "Zakaz reklamowania się.",
+            "Zakaz pingowania administracji.",
+            "Zakaz cytowania wiadomości łamiących regulamin oraz ich rozprzestrzeniania.",
+            "Zakaz streamowania treści nieetycznych i materiałów ujawniających cudze dane.",
           ],
         },
         {
-          heading: "Świat gry",
+          heading: "§3. Minecraft",
           items: [
-            "Nie niszcz budowli innych graczy (griefing) bez ich zgody.",
-            "Kradzież z budowli i skrzyń nieoznaczonych jako publiczne jest zabroniona.",
+            "Zakaz używania wspomagaczy/cheatów (także posiadania) oraz współpracowania z osobami z nich korzystających. Jeśli nie jesteś pewny czy mod/skrypt jest dozwolony zapytaj o to innych graczy lub na tickecie.",
+            "Nie wolno posiadać multikont.",
+            "Zakaz reklamowania się.",
+            "Zakaz podszywania się pod innych graczy oraz administrację.",
+            "Zakaz wykorzystywania błędów serwera/gry. Wszelkie błędy trzeba zgłosić do administracji, a ich nie zgłoszenie jest zaliczane za wykorzystywanie ich.",
+            "Zakaz posiadania obraźliwych/wulgarnych/nagetywanie nacechowanych nicków, skinów i akcesorii.",
+            "Zakaz wysyłania wiadomości, które są wulgarne/obraźliwe/nacechowane negatywnie oraz mogących urazić innych użytkowników.",
+            "Zakaz wysyłania linków niebędącymi własnością Mythoris.eu lub z nim związane.",
+            "Zakaz udostępniania danych osobowych/IP innych graczy.",
+            "Zakaz nadmiernego spamowania/floodowania oraz caps locka.",
+            "Zakaz wysyłania wiadomości za pomocą skryptu/Tiny Taska itp.",
           ],
         },
         {
-          heading: "System hazardu",
+          heading: "§4. Kary",
+          lead: "Kary są uznawane przez administrację według szkód oraz współpracy z administracją z poniższych kar:",
           items: [
-            "Korzystanie z systemu hazardu jest całkowicie dobrowolne.",
-            "Administracja nie zwraca wirtualnej waluty ani przedmiotów utraconych w hazardzie.",
-          ],
-        },
-        {
-          heading: "Kary",
-          items: [
-            "W zależności od wagi przewinienia administracja może zastosować ostrzeżenie, wyciszenie, wyrzucenie z serwera lub bana czasowego bądź stałego.",
-            "Decyzje administracji są ostateczne. Odwołania można składać na Discordzie.",
+            "Mute: 60s/5min/10min/1h/1d/7d;",
+            "Tymczasowy ban: 3d/7d/14d/30d;",
+            "Permamentny ban;",
+            "Inna kara, jeśli powyższe nie są odpowiednie.",
           ],
         },
       ],
-      note: "Regulamin jest w trakcie dopracowywania i może się zmieniać wraz z rozwojem serwera.",
+      note: "© 2026 Mythoris.eu",
     },
     footer: {
       copyright: "MYTHORIS NIE JEST POWIĄZANE Z MOJANG STUDIOS ANI MICROSOFT.",
@@ -218,48 +234,64 @@ export const content: Record<Locale, SiteContent> = {
     },
     rules: {
       kicker: "RULES",
-      title: "Server rules",
-      intro:
-        "By playing on Mythoris, you agree to the rules below. The administration may update them — changes apply as soon as they're published.",
+      title: "Mythoris.eu RULES",
+      intro: "Last change: 27.10.2026",
       sections: [
         {
-          heading: "General rules",
+          heading: "§1. General provisions",
           items: [
-            "Respect other players and staff members.",
-            "Cheating is forbidden: no cheat clients, X-ray, duping, or other unfair methods.",
-            "Owning more than one account to bypass punishments or gain an unfair advantage is forbidden.",
+            "Joining the server equals to accepting undermentioned rules and obligate to obey it.",
+            "Being unfamiliar with rules or unawareness of it's existance does not exempt from liability fro its violation.",
+            "Administration have right to punish someone in situations not covered by the rules, if its execution works badly for the server, its reputation or the community.",
+            "Rules can be changed without informing about that.",
+            "Rules are properties of the server and its forbidden to copy it.",
           ],
         },
         {
-          heading: "Chat & communication",
+          heading: "§2. Discord",
           items: [
-            "Hate speech, discriminatory content, and spam are forbidden.",
-            "Advertising other servers or services without staff permission is forbidden.",
+            "No spamming/flooding.",
+            "No impersonating other players and administration.",
+            "No sharing other people's personal information.",
+            "No using to much of insulting, harassment, inappropiate language, even using emojis and words with vulgar connotation.",
+            "Username and profile picture must be approperiate.",
+            "No racism/vulgar/erotic/religious/political topics.",
+            "No sending files and links containing racism/vulgar/erotic/religious/pornographic topics.",
+            "No IRL trading.",
+            "No promoting.",
+            "No pinging administration.",
+            "No quoting messages that breaks rules.",
+            "No streaming unethical topics or material revealing someone else's personal information.",
           ],
         },
         {
-          heading: "In-game world",
+          heading: "§3. Minecraft",
           items: [
-            "Don't destroy other players' builds (griefing) without their permission.",
-            "Stealing from builds or chests not marked as public is forbidden.",
+            "No cheating/using mods or scripts that makes your game easier and gives you advantage over other players (having too) and cooperating with people using them. If you are unsure whether a mod/script is allowed, ask other players or create a support ticket.",
+            "No multi accounts.",
+            "No promoting.",
+            "No impersonating other players and administration.",
+            "It is prohibited to explot the server/game error. All such errors must be reported to the administration; failure to report them is considered exploitation.",
+            "No inappropriate usernames/skins/accesories.",
+            "It is prohibited to send messages that are vulgar, offensive, or carry a negative tone, or that could cause offense to other users.",
+            "No links that are unrelated to Mythoris.eu .",
+            "No sharing other people's personal information.",
+            "No to much of spamming/flooding and using caps lock.",
+            "No sending messages using scripts/Tiny Task itp.",
           ],
         },
         {
-          heading: "Gambling system",
+          heading: "§4. Punishments",
+          lead: "Punishments are determined by the administration based on the extent of the damage caused and the cooperation with the administration, selected from the fallowing options:",
           items: [
-            "Using the gambling system is entirely voluntary.",
-            "The administration does not refund virtual currency or items lost while gambling.",
-          ],
-        },
-        {
-          heading: "Punishments",
-          items: [
-            "Depending on the severity of the offense, staff may issue a warning, mute, kick, or a temporary or permanent ban.",
-            "Staff decisions are final. Appeals can be submitted on Discord.",
+            "Mute: 60s/5min/10min/1h/1d/7d;",
+            "Temporary ban: 3d/7d/14d/30d;",
+            "Permament ban;",
+            "Other punishment, if penalties above are not appropriate.",
           ],
         },
       ],
-      note: "These rules are still being refined and may change as the server develops.",
+      note: "© 2026 Mythoris.eu",
     },
     footer: {
       copyright: "MYTHORIS IS NOT AFFILIATED WITH MOJANG STUDIOS OR MICROSOFT.",

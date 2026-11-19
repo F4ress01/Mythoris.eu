@@ -20,11 +20,12 @@ export default function RulesPage() {
             {t.rules.sections.map((section) => (
               <Reveal key={section.heading} className="rules-section">
                 <h3>{section.heading}</h3>
-                <ul className="rules-list">
+                {section.lead && <p className="rules-lead">{section.lead}</p>}
+                <ol className="rules-list">
                   {section.items.map((item) => (
                     <li key={item}>{item}</li>
                   ))}
-                </ul>
+                </ol>
               </Reveal>
             ))}
 
