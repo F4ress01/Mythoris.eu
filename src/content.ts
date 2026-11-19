@@ -47,9 +47,22 @@ export interface SiteContent {
     sections: { heading: string; items: string[] }[];
     note: string;
   };
+  packs: {
+    kicker: string;
+    title: string;
+    intro: string;
+    loading: string;
+    empty: string;
+    error: string;
+    download: string;
+    copyUrl: string;
+    apiLabel: string;
+    version: string;
+  };
   footer: {
     copyright: string;
     rules: string;
+    packs: string;
   };
   toast: string;
   discord: {
@@ -157,9 +170,22 @@ export const content: Record<Locale, SiteContent> = {
       ],
       note: "Regulamin jest w trakcie dopracowywania i może się zmieniać wraz z rozwojem serwera.",
     },
+    packs: {
+      kicker: "TEXTUREPACKI",
+      title: "Texturepacki Mythoris",
+      intro: "Oficjalne texturepacki serwera. Zwykle nie musisz nic pobierać — serwer wysyła pack automatycznie po wejściu. Pliki możesz też pobrać ręcznie.",
+      loading: "Ładowanie…",
+      empty: "Brak packów do pobrania.",
+      error: "Nie udało się pobrać listy packów.",
+      download: "POBIERZ",
+      copyUrl: "KOPIUJ LINK",
+      apiLabel: "API dla pluginów i launcherów",
+      version: "Wersja",
+    },
     footer: {
       copyright: "MYTHORIS NIE JEST POWIĄZANE Z MOJANG STUDIOS ANI MICROSOFT.",
       rules: "REGULAMIN",
+      packs: "TEXTUREPACKI",
     },
     toast: "SKOPIOWANO IP SERWERA",
     discord: {
@@ -261,9 +287,22 @@ export const content: Record<Locale, SiteContent> = {
       ],
       note: "These rules are still being refined and may change as the server develops.",
     },
+    packs: {
+      kicker: "RESOURCE PACKS",
+      title: "Mythoris resource packs",
+      intro: "Official server resource packs. You usually don't need to download anything — the server sends the pack automatically when you join. You can also download the files manually.",
+      loading: "Loading…",
+      empty: "No packs available.",
+      error: "Could not load the pack list.",
+      download: "DOWNLOAD",
+      copyUrl: "COPY LINK",
+      apiLabel: "API for plugins and launchers",
+      version: "Version",
+    },
     footer: {
       copyright: "MYTHORIS IS NOT AFFILIATED WITH MOJANG STUDIOS OR MICROSOFT.",
       rules: "RULES",
+      packs: "RESOURCE PACKS",
     },
     toast: "SERVER IP COPIED",
     discord: {

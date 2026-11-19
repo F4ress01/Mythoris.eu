@@ -327,6 +327,7 @@
   }
   .rules-list{ margin:0; padding-left:22px; color:var(--parchment); }
   .rules-list li{ margin-bottom:10px; line-height:1.6; }
+  .pack-meta{ color:var(--muted-2); font-size:0.8rem; word-break:break-all; margin:0 0 14px; }
   .rules-note{
     margin-top:48px; padding-top:24px; border-top:3px solid #000;
     color:var(--muted-2); font-size:0.8rem; font-family:var(--font-pixel);

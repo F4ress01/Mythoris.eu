@@ -47,3 +47,13 @@ W `src/components/Community.tsx` statystyki graczy/gildii/online mają placehold
 gdy będziesz je mieć.
 
 Treści (PL/EN) edytujesz w jednym miejscu: `src/content.ts`.
+
+## Texturepacki i API (`/api/packs.json`)
+
+Strona hostuje resource packi i udostępnia ich listę jako statyczne API.
+
+1. Wrzuć plik `.zip` do `public/packs/` (nazwa: litery, cyfry, `.` `_` `-`; `pack.mcmeta` w korzeniu archiwum; max 100 MB).
+2. Opcjonalnie dopisz opis w `public/packs/meta.json` (klucz = nazwa pliku): `name`, `description`, `version`, `default` (`true` = plugin wysyła ten pack graczom).
+3. Zrób commit/PR do `main`. Przy buildzie `scripts/build-packs-api.mjs` liczy SHA-1 i rozmiar i generuje `public/api/packs.json` (plik generowany, w `.gitignore`).
+
+Lokalnie: `npm run packs`. Strona z listą: `/packs`. Adres w pakiecie to `https://mythoris.eu/packs/<plik>.zip`; po podmianie pliku SHA-1 zmienia się sam, a plugin odświeża pack graczom.
