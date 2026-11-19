@@ -1,0 +1,8 @@
+{
+  "przyklad.zip": {
+    "name": "Mythoris Pack",
+    "description": "Glowny texturepack serwera.",
+    "version": "1.0",
+    "default": true
+  }
+}
