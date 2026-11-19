@@ -1,0 +1,16 @@
+{
+  "generated": "2026-11-19T06:20:46.853Z",
+  "packs": [
+    {
+      "id": "przyklad",
+      "name": "Mythoris Pack",
+      "description": "Glowny texturepack serwera.",
+      "version": "1.0",
+      "default": true,
+      "file": "przyklad.zip",
+      "url": "https://mythoris.eu/packs/przyklad.zip",
+      "sha1": "df4e0fee4905b5cf9311bdf21bdf9c2d61151584",
+      "size": 166
+    }
+  ]
+}
