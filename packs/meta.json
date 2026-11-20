@@ -4,5 +4,11 @@
     "description": "Glowny texturepack serwera.",
     "version": "1.0",
     "default": true
+  },
+  "mythoris.zip": {
+    "name": "Mythoris Pack",
+    "description": "",
+    "default": true,
+    "version": "2026.11.20-1701"
   }
 }
