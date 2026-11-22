@@ -1,16 +1,16 @@
 {
-  "generated": "2026-11-20T16:02:26.095Z",
+  "generated": "2026-11-22T11:14:25.892Z",
   "packs": [
     {
       "id": "mythoris",
       "name": "Mythoris Pack",
       "description": "",
-      "version": "2026.11.20-1701",
+      "version": "2026.11.22-1213",
       "default": true,
       "file": "mythoris.zip",
       "url": "https://mythoris.eu/packs/mythoris.zip",
-      "sha1": "7c5d6f3ce0c9b377146ec313f4911608ffb9784b",
-      "size": 214
+      "sha1": "1194e8443e229cc76c518727547c6f785c873c17",
+      "size": 6805
     }
   ]
 }
