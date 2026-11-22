@@ -1,16 +1,27 @@
 {
-  "generated": "2026-11-19T06:20:46.853Z",
+  "generated": "2026-11-22T14:06:31.510Z",
   "packs": [
     {
-      "id": "przyklad",
-      "name": "Mythoris Pack",
-      "description": "Glowny texturepack serwera.",
+      "id": "hotbar-hidden",
+      "name": "Ukryty hotbar",
+      "description": "Wysylany tylko podczas wyboru postaci (plugin AW-RPG), nie jest wysylany graczom na stale.",
       "version": "1.0",
+      "default": false,
+      "file": "hotbar-hidden.zip",
+      "url": "https://mythoris.eu/packs/hotbar-hidden.zip",
+      "sha1": "ec315ad325f8a446e5d1c5e981c9763eeb4ac9f7",
+      "size": 1997
+    },
+    {
+      "id": "mythoris",
+      "name": "Mythoris Pack",
+      "description": "",
+      "version": "2026.11.22-1213",
       "default": true,
-      "file": "przyklad.zip",
-      "url": "https://mythoris.eu/packs/przyklad.zip",
-      "sha1": "df4e0fee4905b5cf9311bdf21bdf9c2d61151584",
-      "size": 166
+      "file": "mythoris.zip",
+      "url": "https://mythoris.eu/packs/mythoris.zip",
+      "sha1": "1194e8443e229cc76c518727547c6f785c873c17",
+      "size": 6805
     }
   ]
 }

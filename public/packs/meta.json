@@ -10,5 +10,11 @@
     "description": "",
     "default": true,
     "version": "2026.11.22-1213"
+  },
+  "hotbar-hidden.zip": {
+    "name": "Ukryty hotbar",
+    "description": "Wysylany tylko podczas wyboru postaci (plugin AW-RPG), nie jest wysylany graczom na stale.",
+    "version": "1.0",
+    "default": false
   }
 }
