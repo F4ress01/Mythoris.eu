@@ -3,6 +3,7 @@ import Footer from "../components/Footer";
 import Nav from "../components/Nav";
 import Toast from "../components/Toast";
 import { useSite } from "../context/SiteProvider";
+import { useSeo } from "../lib/useSeo";
 
 interface Pack {
   id: string;
@@ -22,6 +23,7 @@ function formatSize(bytes: number): string {
 
 export default function PacksPage() {
   const { t } = useSite();
+  useSeo({ title: t.packs.title, description: t.packs.intro.slice(0, 200), path: "/packs" });
   const [packs, setPacks] = useState<Pack[] | null>(null);
   const [failed, setFailed] = useState(false);
 

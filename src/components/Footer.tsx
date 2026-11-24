@@ -13,7 +13,7 @@ export default function Footer() {
       <div className="wrap">
         <div className="footer-row">
           <div className="footer-brand">
-            <img src="/assets/mythoris-icon.png" alt="Mythoris" />
+            <img src="/assets/mythoris-icon.png" alt="Mythoris" width={38} height={42} loading="lazy" decoding="async" />
             <div>
               <span>MYTHORIS</span>
               <div className="footer-ip">MYTHORIS.EU · MINECRAFT {MC_VERSION}</div>

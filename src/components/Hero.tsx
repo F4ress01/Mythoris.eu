@@ -1,5 +1,6 @@
 import { MC_VERSION, SERVER_IP } from "../content";
 import { useSite } from "../context/SiteProvider";
+import ProfileSearch from "./ProfileSearch";
 
 export default function Hero() {
   const { t, copyIp } = useSite();
@@ -13,6 +14,10 @@ export default function Hero() {
             className="hero-logo"
             src="/assets/mythoris-logo.png"
             alt="Mythoris.eu — Minecraft MMORPG"
+            width={1600}
+            height={249}
+            fetchPriority="high"
+            decoding="async"
           />
           <p className="tagline">{t.hero.tagline}</p>
 
@@ -22,6 +27,10 @@ export default function Hero() {
             <button type="button" onClick={copyIp}>
               {t.hero.copy}
             </button>
+          </div>
+
+          <div className="hero-search">
+            <ProfileSearch />
           </div>
 
           <div className="hero-actions" style={{ marginTop: 26 }}>

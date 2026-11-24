@@ -7,8 +7,12 @@ import Hero from "../components/Hero";
 import Nav from "../components/Nav";
 import ScrollToHash from "../components/ScrollToHash";
 import Toast from "../components/Toast";
+import { useSite } from "../context/SiteProvider";
+import { useSeo } from "../lib/useSeo";
 
 export default function HomePage() {
+  const { t } = useSite();
+  useSeo({ title: "Mythoris — Minecraft MMORPG", description: t.hero.tagline.slice(0, 200), path: "/" });
   return (
     <>
       <ScrollToHash />
