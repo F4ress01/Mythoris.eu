@@ -17,7 +17,7 @@ interface PlayerProfile {
   profiles: { name: string; class: string; level: number; active: boolean }[];
 }
 
-const API = (import.meta.env.VITE_PROFILE_API as string | undefined) ?? "";
+const API = (import.meta.env. as string | undefined) ?? "";
 
 const TEXT = {
   pl: { kicker: "PROFIL GRACZA", loading: "Ładowanie…", missing: "Nie znaleziono gracza (musi choć raz wejść na serwer).", error: "Nie udało się pobrać profilu. Spróbuj później.", unconfigured: "Profile graczy nie są jeszcze skonfigurowane.", level: "Poziom", cls: "Klasa", rank: "Ranga", guild: "Gildia", playtime: "Czas gry", status: "Status", characters: "Postacie", online: "online", offline: "offline" },
