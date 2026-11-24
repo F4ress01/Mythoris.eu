@@ -320,6 +320,14 @@
   }
 
   /* ---------- rules page ---------- */
+  .profile-head{ display:flex; align-items:center; gap:20px; margin-bottom:24px; }
+  .profile-head img{ border-radius:12px; image-rendering:pixelated; }
+  .profile-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; }
+  .profile-stat{ display:flex; flex-direction:column; gap:4px; padding:14px 16px; border:1px solid rgba(255,255,255,.12); border-radius:12px; }
+  .profile-stat span{ opacity:.65; font-size:.85rem; }
+  .profile-chars{ list-style:none; padding:0; display:grid; gap:8px; }
+  .profile-chars li{ padding:10px 14px; border:1px solid rgba(255,255,255,.1); border-radius:10px; }
+  .profile-chars li.active{ border-color:rgba(155,89,182,.8); }
   .rules-section{ margin-top:40px; }
   .rules-section h3{
     font-family:var(--font-pixel); color:var(--green-bright); font-size:1.1rem;
