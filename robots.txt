@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /konto
+Disallow: /auth/
+Disallow: /wiki-new
 
 Sitemap: https://mythoris.eu/sitemap.xml
