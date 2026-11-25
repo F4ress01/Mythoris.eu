@@ -1,4 +1,7 @@
-export type Locale = "pl" | "en";
+import { extraContent } from "./i18n/extra";
+
+export type Locale = "pl" | "en" | "de" | "cs" | "uk";
+type BaseLocale = "pl" | "en";
 
 export interface SiteContent {
   nav: {
@@ -83,7 +86,7 @@ export const SERVER_IP = "mythoris.eu";
 export const DISCORD_URL = "https://discord.gg/8875JXWfRE";
 export const MC_VERSION = "1.21.11+";
 
-export const content: Record<Locale, SiteContent> = {
+const base: Record<BaseLocale, SiteContent> = {
   pl: {
     nav: {
       gameplay: "Rozgrywka",
@@ -351,3 +354,6 @@ export const content: Record<Locale, SiteContent> = {
     },
   },
 };
+
+// de / cs / uk: tlumaczenia w i18n/extra.ts (regulamin zostaje po angielsku, dopoki nie zostanie przetlumaczony)
+export const content: Record<Locale, SiteContent> = { ...base, ...extraContent(base.en) };

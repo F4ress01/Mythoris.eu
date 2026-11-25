@@ -3,9 +3,11 @@ import Nav from "../components/Nav";
 import Toast from "../components/Toast";
 import { DISCORD_URL } from "../content";
 import { useSite } from "../context/SiteProvider";
+import { useSeo } from "../lib/useSeo";
 
 export default function ShopPage() {
   const { t } = useSite();
+  useSeo({ title: t.shop.title, description: t.shop.msg.slice(0, 200), path: "/shop" });
 
   return (
     <>

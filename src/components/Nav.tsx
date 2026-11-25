@@ -1,7 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useSite } from "../context/SiteProvider";
 import { goToSection } from "../utils/sectionLink";
+import LanguageSelect from "./LanguageSelect";
+import ProfileSearch from "./ProfileSearch";
+import UserMenu from "./UserMenu";
 
 const SECTION_IDS = ["rozgrywka", "discord", "spolecznosc"];
 
@@ -36,7 +39,7 @@ function useActiveSection(ids: string[]) {
 }
 
 export default function Nav() {
-  const { t, locale, setLocale, copyIp, mobileOpen, toggleMobile, closeMobile } = useSite();
+  const { t, ui, copyIp, mobileOpen, toggleMobile, closeMobile } = useSite();
   const activeId = useActiveSection(SECTION_IDS);
   const navRef = useRef<HTMLElement | null>(null);
   const { pathname } = useLocation();
@@ -68,7 +71,7 @@ export default function Nav() {
     <header className="nav" ref={navRef}>
       <div className="wrap nav-row">
         <a className="brand" href="#top" onClick={(e) => goToSection(e, "top", pathname, navigate)}>
-          <img src="/assets/mythoris-icon.png" alt="Mythoris" />
+          <img src="/assets/mythoris-icon.png" alt="Mythoris" width={38} height={42} decoding="async" />
           <span>MYTHORIS</span>
         </a>
         <ul className="nav-links">
@@ -99,31 +102,30 @@ export default function Nav() {
               {t.nav.community}
             </a>
           </li>
+          <li>
+            <NavLink to="/ranking">{ui.nav.ranking}</NavLink>
+          </li>
+          <li>
+            <NavLink to="/wiki">{ui.nav.wiki}</NavLink>
+          </li>
+          <li>
+            <NavLink to="/changelog">{ui.nav.changelog}</NavLink>
+          </li>
         </ul>
         <div className="nav-cta">
-          <div className="lang-switch" role="group" aria-label="Language / Język">
-            <button
-              type="button"
-              className={locale === "pl" ? "active" : ""}
-              onClick={() => setLocale("pl")}
-            >
-              PL
-            </button>
-            <button
-              type="button"
-              className={locale === "en" ? "active" : ""}
-              onClick={() => setLocale("en")}
-            >
-              EN
-            </button>
+          <div className="nav-search">
+            <ProfileSearch />
           </div>
+          <LanguageSelect />
+          <UserMenu />
           <button className="ip-chip" type="button" onClick={copyIp}>
             mythoris.eu ⧉
           </button>
           <button
             className="burger"
-            aria-label="Menu"
+            aria-label={ui.common.menu}
             aria-expanded={mobileOpen}
+            aria-controls="mobileNav"
             type="button"
             onClick={toggleMobile}
           >
@@ -165,6 +167,21 @@ export default function Nav() {
             >
               {t.nav.community}
             </a>
+          </li>
+          <li>
+            <Link to="/ranking" onClick={closeMobile}>{ui.nav.ranking}</Link>
+          </li>
+          <li>
+            <Link to="/wiki" onClick={closeMobile}>{ui.nav.wiki}</Link>
+          </li>
+          <li>
+            <Link to="/changelog" onClick={closeMobile}>{ui.nav.changelog}</Link>
+          </li>
+          <li className="mobile-extra">
+            <ProfileSearch onDone={closeMobile} />
+          </li>
+          <li className="mobile-extra">
+            <UserMenu onNavigate={closeMobile} />
           </li>
         </ul>
       </div>

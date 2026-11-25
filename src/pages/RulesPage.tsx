@@ -3,9 +3,11 @@ import Nav from "../components/Nav";
 import Reveal from "../components/Reveal";
 import Toast from "../components/Toast";
 import { useSite } from "../context/SiteProvider";
+import { useSeo } from "../lib/useSeo";
 
 export default function RulesPage() {
   const { t } = useSite();
+  useSeo({ title: t.rules.title, description: t.rules.sections[0].items[0].slice(0, 160), path: "/rules" });
 
   return (
     <>

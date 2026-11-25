@@ -1,55 +1,17 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import Footer from "../components/Footer";
-import Nav from "../components/Nav";
-import Toast from "../components/Toast";
+import { Link, useParams } from "react-router-dom";
+import ApiState from "../components/ApiState";
+import Page from "../components/Page";
+import ProfileSearch from "../components/ProfileSearch";
 import { useSite } from "../context/SiteProvider";
-
-interface PlayerProfile {
-  uuid: string;
-  name: string;
-  level: number | null;
-  class: string | null;
-  rank: string | null;
-  guild: { name: string; tag: string } | null;
-  playtimeMinutes: number;
-  online: boolean;
-  profiles: { name: string; class: string; level: number; active: boolean }[];
-}
-
-const API = (import.meta.env.VITE_PROFILE_API as string | undefined) ?? "";
-
-const TEXT = {
-  pl: { kicker: "PROFIL GRACZA", loading: "Ładowanie…", missing: "Nie znaleziono gracza (musi choć raz wejść na serwer).", error: "Nie udało się pobrać profilu. Spróbuj później.", unconfigured: "Profile graczy nie są jeszcze skonfigurowane.", level: "Poziom", cls: "Klasa", rank: "Ranga", guild: "Gildia", playtime: "Czas gry", status: "Status", characters: "Postacie", online: "online", offline: "offline" },
-  en: { kicker: "PLAYER PROFILE", loading: "Loading…", missing: "Player not found (they must have joined the server at least once).", error: "Could not load the profile. Try again later.", unconfigured: "Player profiles are not configured yet.", level: "Level", cls: "Class", rank: "Rank", guild: "Guild", playtime: "Playtime", status: "Status", characters: "Characters", online: "online", offline: "offline" },
-};
+import type { MinecraftProfile } from "../context/AuthProvider";
+import { API_BASE } from "../lib/api";
+import { useApi } from "../lib/useApi";
 
 export default function ProfilePage() {
-  const { locale } = useSite();
-  const tx = TEXT[locale];
+  const { ui } = useSite();
   const { nick = "" } = useParams();
-  const [data, setData] = useState<PlayerProfile | null>(null);
-  const [state, setState] = useState<"loading" | "ok" | "missing" | "error">(API ? "loading" : "error");
-
-  useEffect(() => {
-    if (!API) return;
-    let cancelled = false;
-    setState("loading");
-    fetch(`${API.replace(/\/$/, "")}/api/profile/${encodeURIComponent(nick)}`)
-      .then(async (r) => {
-        if (r.status === 404 || r.status === 400) return cancelled || setState("missing");
-        if (!r.ok) throw new Error(String(r.status));
-        const json = (await r.json()) as PlayerProfile;
-        if (!cancelled) {
-          setData(json);
-          setState("ok");
-        }
-      })
-      .catch(() => !cancelled && setState("error"));
-    return () => {
-      cancelled = true;
-    };
-  }, [nick]);
+  const { data, state, reload } = useApi<MinecraftProfile>(API_BASE ? `/api/profile/${encodeURIComponent(nick)}` : null);
+  const p = ui.profile;
 
   const stat = (label: string, value: string) => (
     <div className="profile-stat">
@@ -59,53 +21,48 @@ export default function ProfilePage() {
   );
 
   return (
-    <>
-      <Nav />
-      <main>
-        <section style={{ paddingTop: 64 }}>
-          <div className="wrap" style={{ maxWidth: 820 }}>
-            <p className="kicker">{tx.kicker}</p>
-            {state === "ok" && data ? (
-              <>
-                <div className="profile-head">
-                  <img src={`https://mc-heads.net/avatar/${data.uuid}/96`} alt="" width={96} height={96} />
-                  <div>
-                    <h2>
-                      {data.name}
-                      {data.guild ? ` [${data.guild.tag}]` : ""}
-                    </h2>
-                    <p className="lede">{data.online ? `🟢 ${tx.online}` : `⚫ ${tx.offline}`}</p>
-                  </div>
-                </div>
-                <div className="profile-grid">
-                  {stat(tx.level, data.level?.toString() ?? "—")}
-                  {stat(tx.cls, data.class ?? "—")}
-                  {stat(tx.rank, data.rank ?? "—")}
-                  {stat(tx.guild, data.guild?.name ?? "—")}
-                  {stat(tx.playtime, `${Math.floor(data.playtimeMinutes / 60)} h`)}
-                </div>
-                <h3 style={{ marginTop: 32 }}>{tx.characters}</h3>
-                <ul className="profile-chars">
-                  {data.profiles.map((p) => (
-                    <li key={p.name} className={p.active ? "active" : ""}>
-                      <strong>{p.name}</strong> — {p.class} (lvl {p.level})
-                    </li>
-                  ))}
-                </ul>
-              </>
-            ) : (
-              <>
-                <h2>{nick}</h2>
-                <p className="lede">
-                  {state === "loading" ? tx.loading : state === "missing" ? tx.missing : API ? tx.error : tx.unconfigured}
-                </p>
-              </>
-            )}
+    <Page title={nick} description={p.seoDesc.replace("{name}", nick)} path={`/profil/${nick}`}>
+      <p className="kicker">{p.kicker}</p>
+      {state === "ok" && data ? (
+        <>
+          <div className="profile-head">
+            <img src={`https://mc-heads.net/avatar/${data.uuid}/96`} alt="" width={96} height={96} />
+            <div>
+              <h2>
+                {data.name}
+                {data.guild ? ` [${data.guild.tag}]` : ""}
+              </h2>
+              <p className="lede">{data.online ? `🟢 ${p.online}` : `⚫ ${p.offline}`}</p>
+            </div>
           </div>
-        </section>
-      </main>
-      <Footer />
-      <Toast />
-    </>
+          <div className="profile-grid">
+            {stat(p.level, data.level?.toString() ?? "—")}
+            {stat(p.cls, data.class ?? "—")}
+            {stat(p.rank, data.rank ?? "—")}
+            {stat(p.guild, data.guild?.name ?? "—")}
+            {stat(p.playtime, `${Math.floor(data.playtimeMinutes / 60)} ${p.hours}`)}
+          </div>
+          <h3 style={{ marginTop: 32 }}>{p.characters}</h3>
+          <ul className="profile-chars">
+            {data.profiles.map((c) => (
+              <li key={c.name} className={c.active ? "active" : ""}>
+                <strong>{c.name}</strong> — {c.class} (lvl {c.level})
+              </li>
+            ))}
+          </ul>
+        </>
+      ) : (
+        <>
+          <h2>{nick}</h2>
+          <ApiState state={state} onRetry={reload} notFoundText={p.missing} />
+        </>
+      )}
+      <div style={{ marginTop: 40 }}>
+        <ProfileSearch />
+        <p style={{ marginTop: 16 }}>
+          <Link to="/ranking">{ui.nav.ranking} →</Link>
+        </p>
+      </div>
+    </Page>
   );
 }

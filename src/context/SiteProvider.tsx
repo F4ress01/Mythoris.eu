@@ -7,11 +7,14 @@ import {
   type ReactNode,
 } from "react";
 import { content, SERVER_IP, type Locale, type SiteContent } from "../content";
+import { LOCALE_CODES } from "../i18n/locales";
+import { ui as uiStrings, type Ui } from "../i18n/ui";
 
 interface SiteContextValue {
   locale: Locale;
   setLocale: (locale: Locale) => void;
   t: SiteContent;
+  ui: Ui;
   copyIp: () => void;
   toastVisible: boolean;
   mobileOpen: boolean;
@@ -26,12 +29,12 @@ const LANG_STORAGE_KEY = "mythoris_lang";
 function detectLocale(): Locale {
   try {
     const saved = window.localStorage.getItem(LANG_STORAGE_KEY);
-    if (saved === "pl" || saved === "en") return saved;
+    if (saved && (LOCALE_CODES as string[]).includes(saved)) return saved as Locale;
   } catch {
     // localStorage unavailable — fall through to browser language
   }
-  const nav = (navigator.language || "en").toLowerCase();
-  return nav.startsWith("pl") ? "pl" : "en";
+  const nav = (navigator.language || "en").toLowerCase().slice(0, 2);
+  return (LOCALE_CODES as string[]).includes(nav) ? (nav as Locale) : "en";
 }
 
 function fallbackCopy(text: string, onDone: () => void) {
@@ -96,6 +99,7 @@ export function SiteProvider({ children }: { children: ReactNode }) {
         locale,
         setLocale,
         t: content[locale],
+        ui: uiStrings[locale],
         copyIp,
         toastVisible,
         mobileOpen,
