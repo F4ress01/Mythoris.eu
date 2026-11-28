@@ -1,17 +1,20 @@
 import { Link, useParams } from "react-router-dom";
+import { pick } from "../lib/localized";
 import ApiState from "../components/ApiState";
 import Page from "../components/Page";
 import ProfileSearch from "../components/ProfileSearch";
+import ProfileHistory from "../components/ProfileHistory";
 import { useSite } from "../context/SiteProvider";
 import type { MinecraftProfile } from "../context/AuthProvider";
 import { API_BASE } from "../lib/api";
 import { useApi } from "../lib/useApi";
 
 export default function ProfilePage() {
-  const { ui } = useSite();
+  const { ui, locale } = useSite();
   const { nick = "" } = useParams();
   const { data, state, reload } = useApi<MinecraftProfile>(API_BASE ? `/api/profile/${encodeURIComponent(nick)}` : null);
   const p = ui.profile;
+  const s = ui.stats;
 
   const stat = (label: string, value: string) => (
     <div className="profile-stat">
@@ -42,6 +45,36 @@ export default function ProfilePage() {
             {stat(p.guild, data.guild?.name ?? "—")}
             {stat(p.playtime, `${Math.floor(data.playtimeMinutes / 60)} ${p.hours}`)}
           </div>
+          {data.titles?.active && <p className="lede">{s.title}: <strong>{data.titles.active}</strong></p>}
+          {data.achievements && (
+            <section aria-labelledby="profile-ach" style={{ marginTop: 32 }}>
+              <h3 id="profile-ach">{s.achievements}: {s.unlocked.replace("{n}", String(data.achievements.unlocked)).replace("{t}", String(data.achievements.total))}</h3>
+              {data.achievements.recent.length > 0 && (
+                <>
+                  <p className="meta-line">{s.recent}</p>
+                  <ul className="profile-chars">
+                    {data.achievements.recent.map((a) => (
+                      <li key={a.id}><strong>{pick(a.name, locale).text || a.id}</strong> — {new Date(a.date).toLocaleDateString(locale)}</li>
+                    ))}
+                  </ul>
+                </>
+              )}
+            </section>
+          )}
+          {data.pets && data.pets.length > 0 && (
+            <section aria-labelledby="profile-pets" style={{ marginTop: 32 }}>
+              <h3 id="profile-pets">{s.pets}</h3>
+              <ul className="profile-chars">
+                {data.pets.map((pt) => (
+                  <li key={pt.id} className={pt.active ? "active" : ""}>
+                    <strong>{pick(pt.name, locale).text || pt.id}</strong> — {s.petLevel.replace("{n}", String(pt.level))}
+                    {pt.rarity ? ` · ${(ui.market.rarities as Record<string, string>)[pt.rarity] ?? pt.rarity}` : ""}
+                    {pt.active ? ` · ${s.activePet}` : ""}
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
           <h3 style={{ marginTop: 32 }}>{p.characters}</h3>
           <ul className="profile-chars">
             {data.profiles.map((c) => (
@@ -50,6 +83,7 @@ export default function ProfilePage() {
               </li>
             ))}
           </ul>
+          <ProfileHistory nick={data.name} />
         </>
       ) : (
         <>

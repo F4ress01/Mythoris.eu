@@ -12,6 +12,7 @@ const RulesPage = lazy(() => import("./pages/RulesPage"));
 const PacksPage = lazy(() => import("./pages/PacksPage"));
 const ProfilePage = lazy(() => import("./pages/ProfilePage"));
 const RankingPage = lazy(() => import("./pages/RankingPage"));
+const MarketPage = lazy(() => import("./pages/MarketPage"));
 const WikiPage = lazy(() => import("./pages/WikiPage"));
 const WikiArticlePage = lazy(() => import("./pages/WikiArticlePage"));
 const WikiNewPage = lazy(() => import("./pages/WikiNewPage"));
@@ -33,6 +34,7 @@ export default function App() {
               <Route path="/rules" element={<RulesPage />} />
               <Route path="/packs" element={<PacksPage />} />
               <Route path="/ranking" element={<RankingPage />} />
+              <Route path="/market" element={<MarketPage />} />
               <Route path="/wiki" element={<WikiPage />} />
               <Route path="/wiki-new" element={<WikiNewPage />} />
               <Route path="/wiki/:slug" element={<WikiArticlePage />} />

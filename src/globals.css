@@ -452,3 +452,24 @@
   .api-state p:last-child{ margin:0; }
   .profile-grid{ grid-template-columns:repeat(auto-fit, minmax(min(150px, 100%), 1fr)); }
   @media (max-width:480px){ .profile-head{ flex-direction:column; align-items:flex-start; } }
+
+/* --- rynek, wykresy, plakietki (fala 2) --- */
+.market-toolbar { flex-wrap: wrap; gap: 8px; }
+.market-toolbar .field { min-width: 150px; }
+.market-lore { display: block; opacity: .7; font-size: .8em; margin-top: 2px; }
+.market-table td:first-child { max-width: 320px; }
+.rarity { font-weight: 700; }
+.rarity-uncommon { color: #55ff55; }
+.rarity-rare { color: #5555ff; }
+.rarity-epic { color: #aa00aa; }
+.rarity-legendary { color: #ffaa00; }
+.rarity-mythic { color: #ff55ff; }
+.rarity-godly { color: #ff5555; }
+.rarity-superior { color: #55ffff; }
+.pager { display: flex; align-items: center; justify-content: center; gap: 16px; margin: 24px 0; }
+.chart { width: 100%; height: auto; max-width: 720px; display: block; margin-top: 12px; }
+.chart-grid { stroke: currentColor; stroke-opacity: .15; }
+.chart-axis { fill: currentColor; opacity: .7; font-size: 11px; font-family: inherit; }
+.chart-line { fill: none; stroke: var(--accent, #4caf50); stroke-width: 2.5; stroke-linejoin: round; }
+.chart-area { fill: var(--accent, #4caf50); opacity: .12; }
+.chart-dot { fill: var(--accent, #4caf50); }

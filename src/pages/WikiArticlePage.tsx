@@ -48,7 +48,8 @@ export default function WikiArticlePage() {
             {data.updated ? `${w.updated}: ${new Date(data.updated).toLocaleDateString(locale)}` : ""}
             {data.updatedBy ? ` ${w.by} ${data.updatedBy}` : ""}
           </p>
-          {canEdit && (
+          {slug.startsWith("auto-") && <p className="notice">{ui.stats.wikiAutoNote}</p>}
+          {canEdit && !slug.startsWith("auto-") && (
             <button type="button" className="btn btn-ghost" onClick={() => setEditing(true)}>
               ✎ {ui.common.edit}
             </button>

@@ -11,6 +11,10 @@ export interface MinecraftProfile {
   playtimeMinutes: number;
   online: boolean;
   profiles: { name: string; class: string; level: number; active: boolean }[];
+  // pola z pluginu (osiagniecia, tytuly, pety) - moga nie istniec u starszych wpisow
+  titles?: { active: string | null; name: Record<string, string> };
+  achievements?: { unlocked: number; total: number; recent: { id: string; name: Record<string, string>; date: string }[] };
+  pets?: { id: string; name: Record<string, string>; rarity: string | null; level: number; active: boolean }[];
 }
 
 export interface Me {
