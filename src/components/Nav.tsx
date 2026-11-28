@@ -104,6 +104,7 @@ export default function Nav() {
           </li>
           <li>
             <NavLink to="/ranking">{ui.nav.ranking}</NavLink>
+            <NavLink to="/market">{ui.market.nav}</NavLink>
           </li>
           <li>
             <NavLink to="/wiki">{ui.nav.wiki}</NavLink>
@@ -170,6 +171,7 @@ export default function Nav() {
           </li>
           <li>
             <Link to="/ranking" onClick={closeMobile}>{ui.nav.ranking}</Link>
+            <Link to="/market" onClick={closeMobile}>{ui.market.nav}</Link>
           </li>
           <li>
             <Link to="/wiki" onClick={closeMobile}>{ui.nav.wiki}</Link>

@@ -13,6 +13,7 @@ interface WikiItem {
   category: string;
   title: LText;
   updated?: string;
+  generated?: boolean;
 }
 
 export default function WikiPage() {
@@ -68,7 +69,7 @@ export default function WikiPage() {
                   <li key={p.slug}>
                     <Link to={`/wiki/${p.slug}`}>
                       <strong>{pick(p.title, locale).text || p.slug}</strong>
-                      <span>{p.category || w.uncategorized}</span>
+                      <span>{p.category || w.uncategorized}{p.generated ? ` · ${ui.stats.wikiAuto}` : ""}</span>
                     </Link>
                   </li>
                 ))}
